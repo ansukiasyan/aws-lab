@@ -1,3 +1,13 @@
+#Terraform configured to use S3 bucket as a backend to store tfstate files
+#Run 'terraform init -backend-config=backend.hcl' command to merge patial configurations together
+terraform {
+  backend "s3" {    
+    key    = "global/s3/terraform.tfstate"    
+  }
+}
+
+
+
 provider "aws" {
   region = "us-east-1"
 }
