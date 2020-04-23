@@ -3,8 +3,8 @@ provider "aws" {
 }
 
 resource "aws_launch_configuration" "ubuntu" {
-  image_id               = "ami-07ebfd5b3428b6f4d"
-  instance_type          = "t2.micro"
+  image_id        = "ami-07ebfd5b3428b6f4d"
+  instance_type   = "t2.micro"
   security_groups = [aws_security_group.instance.id]
 
   user_data = <<-EOF
@@ -32,7 +32,7 @@ resource "aws_security_group" "instance" {
 
 resource "aws_autoscaling_group" "ubuntu" {
   launch_configuration = aws_launch_configuration.ubuntu.name
-  vpc_zone_identifier = data.aws_subnet_ids.default.ids  
+  vpc_zone_identifier  = data.aws_subnet_ids.default.ids
 
   target_group_arns = [aws_lb_target_group.asg.arn]
   health_check_type = "ELB"
@@ -41,10 +41,10 @@ resource "aws_autoscaling_group" "ubuntu" {
   max_size = 10
 
   tag {
-    key = "Name"
-    value = "terraform_asg_test"
+    key                 = "Name"
+    value               = "terraform_asg_test"
     propagate_at_launch = true
-  } 
+  }
 }
 
 
