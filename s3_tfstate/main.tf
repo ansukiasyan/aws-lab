@@ -14,7 +14,9 @@ provider "aws" {
 
 resource "aws_s3_bucket" "tf_state" {
   bucket = "annas-terraform-state"
-
+  #allows to delete the bucket even if it contains files
+  force_destroy = true
+  
   #lifecycle {
   #  prevent_destroy = true
   #}

@@ -14,7 +14,7 @@ resource "aws_launch_configuration" "ubuntu" {
             EOF  
 
   lifecycle {
-    create_before_destroy = trufe
+    create_before_destroy = true
   }
 }
 
