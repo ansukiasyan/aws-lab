@@ -50,3 +50,10 @@ resource "aws_route_table_association" "public" {
     subnet_id = aws_subnet.public.id
     route_table_id = aws_route_table.public.id
 }
+
+#Route the internet traffic from the private subnet through the NAT instance 
+resource "aws_route" "NAT" {
+    route_table_id = aws_vpc.test.main_route_table_id
+    destination_cidr_block = "0.0.0.0/0"   
+    instance_id = aws_instance.NAT.id   
+}
