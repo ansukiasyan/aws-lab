@@ -1,9 +1,9 @@
 resource "aws_instance" "webserver" {
   ami                    = "ami-0f7919c33c90f5b58"
   instance_type          = "t2.micro"
-  subnet_id = aws_subnet.public.id
+  subnet_id              = aws_subnet.public.id
   vpc_security_group_ids = [aws_security_group.webserver.id]
-  key_name = aws_key_pair.annas.key_name  
+  key_name               = aws_key_pair.annas.key_name
 
   tags = {
     Name = "WebServer"
@@ -11,7 +11,7 @@ resource "aws_instance" "webserver" {
 }
 
 resource "aws_security_group" "webserver" {
-  name = "WebDMZ"
+  name   = "WebDMZ"
   vpc_id = aws_vpc.test.id
 
   ingress {
